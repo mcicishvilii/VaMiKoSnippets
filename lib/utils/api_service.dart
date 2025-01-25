@@ -38,7 +38,6 @@ class ApiService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(loginRequest.toJson()),
       );
-      print('Raw response body: ${response.body}');
 
       final data = jsonDecode(response.body);
 
@@ -52,11 +51,9 @@ class ApiService {
           'refresh_token': loginResponse.refreshToken,
         };
       } else {
-        print(data['error']);
         return {'success': false, 'message': data['error'] ?? 'Login failed'};
       }
     } catch (e) {
-      print(e);
       return {'success': false, 'message': 'Network error occurred'};
     }
   }

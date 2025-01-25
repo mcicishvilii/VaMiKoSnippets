@@ -5,6 +5,7 @@ import '../../utils/validators.dart';
 import '../../widgets/custom_text_field.dart';
 import '../home_page.dart';
 import '../register/register_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -44,7 +45,11 @@ class _LoginPageState extends State<LoginPage> {
     if (!mounted) return;
 
     if (result['success']) {
-      // Navigate to home page and clear navigation stack
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('access_token', result['access_token']);
+      await prefs.setString('refresh_token', result['refresh_token']);
+      await prefs.setBool('is_logged_in', true);
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => HomePage(

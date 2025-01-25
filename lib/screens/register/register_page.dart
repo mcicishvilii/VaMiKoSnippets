@@ -63,6 +63,12 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  void _navigateToLogin() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +115,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: _isLoading
                       ? const CircularProgressIndicator()
                       : const Text('Register'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _navigateToLogin,
+                  child: const Text('Login'),
                 ),
               ),
             ],
