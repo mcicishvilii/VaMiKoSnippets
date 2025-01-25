@@ -1,0 +1,16 @@
+flutter_native_splash:
+  android: true
+
+  background_image: "assets/images/pubg-10217.png"
+  color: "#42a5f5"
+  image: "assets/images/pubg-10217.png"
+  color_dark: "#42a5f5"
+  image_dark: "assets/images/pubg-10217.png"
+  branding: "assets/images/pubg-10217.png"
+
+  android_12:
+    image: "assets/images/pubg-10217.png"
+    color: "#42a5f5"
+    image_dark: "assets/images/pubg-10217.png"
+    color_dark: "#42a5f5"
+    branding: "assets/images/pubg-10217.png"
