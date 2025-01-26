@@ -1,29 +1,27 @@
-# flutmisho
+# VaMiKo
 
-A new Flutter project.
+![GIF-cf6292dc93b9413f7f5cde6ed930166e-ezgif com-resize](https://github.com/user-attachments/assets/49af3125-415f-4b41-9462-ce61824cafc1)
 
-## Getting Started
+ჩვენი აპლიკაცია დაგეხმარება მოძებნო საინტერესო და შენზე მორგებული ქოუდინგ ინფორმაცია და სიახლეები
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/to/state-management-sample).
+## რისი გაკეთება შეგიძლია
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### სიახლეები
+- გააეცნო კოდინგის სამყაროს სიახლეებს
+- იპოვნო შენთვის საინტერესო code snippet-ები
 
-## Assets
+### კოპიპეისტი
+- უბრალოდ მოაკოპირო კოდი ჩვენთან და ჩააფეისთო შენს პრიოექტში
+- გაუზიარო საინტერესო კოდის ნაწილი მეგობარს სხვადასხვა პლატფორმაზე
 
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
+### პროფილი
+- დარეგისტრირდე, დალოგინდე და დალოგაუთდე (New!)
+- დაამატო შენი საყვარელი კოდ სნიპეტი ფავორიტებში თუ ინტერნეტი არ გაქვს და როცა სახლში მიხვალ არ დაგეკარგოს
 
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/to/resolution-aware-images).
+## სქრინები
+<img src="https://github.com/user-attachments/assets/9b6a559a-4f2e-430c-b1de-caeda3caf36b" alt="Register" width="200">
+<img src="https://github.com/user-attachments/assets/84b4a668-c28c-489e-a79c-070738792b3c" alt="Login" width="200">
+<img src="https://github.com/user-attachments/assets/b80c5163-a365-4449-b8cb-7812807a1fdb" alt="Home" width="200">
+<img src="https://github.com/user-attachments/assets/eb551bee-4f3e-483d-a00a-df34b2f1d538" alt="Profile" width="200">
+<img src="https://github.com/user-attachments/assets/f533ce65-f39c-4be8-a344-564c62414666" alt="Drawer" width="200">
 
-## Localization
-
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
-
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter apps](https://flutter.dev/to/internationalization).
