@@ -1,5 +1,6 @@
-
 # VaMiKo
+
+![GIF-cf6292dc93b9413f7f5cde6ed930166e-ezgif com-resize](https://github.com/user-attachments/assets/49af3125-415f-4b41-9462-ce61824cafc1)
 
 ჩვენი აპლიკაცია დაგეხმარება მოძებნო საინტერესო და შენზე მორგებული ქოუდინგ ინფორმაცია და სიახლეები
 
