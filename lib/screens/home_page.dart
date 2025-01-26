@@ -1,6 +1,5 @@
 import 'package:flutmisho/screens/user_profile.dart';
 import 'package:flutter/material.dart';
-
 import '../models/user_profile.dart';
 import '../models/course_data.dart';
 import '../utils/api_service.dart';
@@ -22,6 +21,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
   final _apiService = ApiService();
   UserProfile? _userProfile;
   bool _isLoading = true;
@@ -76,6 +77,81 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void _showUserMenu() {
+    _hideUserMenu();
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        width: 200,
+        child: CompositedTransformFollower(
+          link: _layerLink,
+          showWhenUnlinked: false,
+          offset: const Offset(-150, 50),
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text('Edit Profile'),
+                    onTap: () {
+                      _hideUserMenu();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Contact tapped!")),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Account Settings'),
+                    onTap: () {
+                      _hideUserMenu();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Accoun settings tapped!")),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('Log Out'),
+                    onTap: () {
+                      _hideUserMenu();
+                      _handleLogout();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("see you soon!")),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  void _hideUserMenu() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,25 +171,24 @@ class _HomePageState extends State<HomePage> {
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.menu),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+                _hideUserMenu();
+              },
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              showDialog(
-                context: context,
-                barrierDismissible:
-                    false, // Prevent dismissal by tapping outside
-                builder: (BuildContext context) {
-                  return UserProfileModal(
-                    email: _userProfile?.email ?? "Unknown User",
-                    onClose: () => Navigator.of(context).pop(),
-                    onLogout: _handleLogout,
-                  );
-                },
-              );
-            },
+          CompositedTransformTarget(
+            link: _layerLink,
+            child: IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                if (_overlayEntry == null) {
+                  _showUserMenu();
+                } else {
+                  _hideUserMenu();
+                }
+              },
+            ),
           ),
         ],
       ),
