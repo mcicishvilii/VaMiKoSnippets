@@ -20,8 +20,6 @@
 ## სქრინები
 
 <p>
-![viber_image_2025-01-26_12-13-01-011](https://github.com/user-attachments/assets/25514d4c-4c34-47de-8c5b-99f09f3ff2e7)
-
 <img src="https://user-images.githubusercontent.com/66873825/119156647-0fdb4b00-ba72-11eb-9b8f-591930ca1d85.jpg" alt="Splash View" width="200">
 <img src="https://user-images.githubusercontent.com/66873825/119160372-d4428000-ba75-11eb-85ba-b4713f11a582.jpg" alt="Home View" width="200">
 <img src="https://user-images.githubusercontent.com/66873825/119157561-eff85700-ba72-11eb-9ef9-7f039dba3dc1.jpg" alt="NavDrawer View" width="200">
