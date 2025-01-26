@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutmisho/models/categories.dart';
 
 class TopicChips extends StatefulWidget {
-  TopicChips({super.key});
+  final Function(String?) onCategorySelected;
+
+  TopicChips({super.key, required this.onCategorySelected});
 
   @override
   _TopicChipsState createState() => _TopicChipsState();
@@ -27,11 +29,17 @@ class _TopicChipsState extends State<TopicChips> {
         children: categories.asMap().entries.map((entry) {
           final index = entry.key;
           final category = entry.value;
+
           return GestureDetector(
             onTap: () {
               setState(() {
                 selectedIndex = index;
               });
+
+              // Notify the parent widget of the selected category
+              widget.onCategorySelected(
+                selectedIndex == index ? category.name : null,
+              );
             },
             child: Chip(
               shape: StadiumBorder(
