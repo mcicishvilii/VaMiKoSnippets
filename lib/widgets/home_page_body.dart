@@ -170,6 +170,21 @@ class _HomePageBodyState extends State<HomePageBody> {
                 );
               }
 
+              // Check if it's the last item (for the "Clear Filter" button)
+              if (index == filteredCourses.length) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        filterCourses(null); // Clear the filter
+                      },
+                      child: Text('Clear Filter'),
+                    ),
+                  ),
+                );
+              }
+
               // Build the course card
               final course = filteredCourses[index];
               return Padding(
@@ -188,7 +203,8 @@ class _HomePageBodyState extends State<HomePageBody> {
                 ),
               );
             },
-            childCount: filteredCourses.isEmpty ? 1 : filteredCourses.length,
+            childCount:
+                filteredCourses.isEmpty ? 1 : filteredCourses.length + 1,
           ),
         ),
       ],
