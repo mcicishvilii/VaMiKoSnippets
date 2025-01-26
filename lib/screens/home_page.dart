@@ -1,4 +1,9 @@
 import 'package:flutmisho/screens/user_profile.dart';
+import 'package:flutmisho/widgets/drawer.dart';
+import 'package:flutmisho/widgets/home_page_body.dart';
+import 'package:flutmisho/widgets/network_error_popup.dart';
+import 'package:flutmisho/widgets/text_field_with_clear.dart';
+import 'package:flutmisho/widgets/user_settings_popup.dart';
 import 'package:flutter/material.dart';
 import '../models/user_profile.dart';
 import '../models/course_data.dart';
@@ -67,6 +72,7 @@ class _HomePageState extends State<HomePage> {
         MaterialPageRoute(builder: (context) => const LoginPage()),
         (route) => false,
       );
+      _hideUserMenu();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -87,59 +93,15 @@ class _HomePageState extends State<HomePage> {
           showWhenUnlinked: false,
           offset: const Offset(-150, 50),
           child: Material(
-            color: Colors.transparent,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text('Edit Profile'),
-                    onTap: () {
-                      _hideUserMenu();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Contact tapped!")),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Account Settings'),
-                    onTap: () {
-                      _hideUserMenu();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Accoun settings tapped!")),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.logout),
-                    title: const Text('Log Out'),
-                    onTap: () {
-                      _hideUserMenu();
-                      _handleLogout();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("see you soon!")),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+              color: Colors.transparent,
+              child: CustomPopupMenu(
+                hideUserMenu: () {
+                  _hideUserMenu();
+                },
+                logOut: () {
+                  _handleLogout();
+                },
+              )),
         ),
       ),
     );
@@ -193,127 +155,18 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('About Us'),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("About Us tapped!")),
-                );
-              },
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Contact'),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Contact tapped!")),
-                );
-              },
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Terms of Service'),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Terms of Service tapped!")),
-                );
-              },
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Privacy Policy'),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Privacy Policy tapped!")),
-                );
-              },
-            ),
-            const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Search...',
-                ),
-                onChanged: (value) {
-                  // Implement search functionality
-                },
-              ),
-            ),
-          ],
-        ),
+        child: CustomDrawer(),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _error != null
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        _error!,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: _loadProfile,
-                        child: const Text('Retry'),
-                      ),
-                    ],
-                  ),
+              ? NetworkErrorPopup(
+                  error: _error,
+                  loadProfile: () {
+                    _loadProfile();
+                  },
                 )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                    ),
-                    const SizedBox(height: 16),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: courses.length,
-                        itemBuilder: (context, index) {
-                          final course = courses[index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                              vertical: 8.0,
-                            ),
-                            child: CourseCard(
-                              imageUrl: course['imageUrl'],
-                              tags: course['tags'].cast<String>(),
-                              title: course['title'],
-                              description: course['description'],
-                              rating: course['rating'],
-                              duration: course['duration'],
-                              lectures: course['lectures'],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+              : HomePageBody(),
     );
   }
 }
