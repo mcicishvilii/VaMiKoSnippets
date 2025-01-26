@@ -12,9 +12,12 @@ class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         TextFieldWithIcons(),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+        ),
         TopicCategories(),
         Padding(
           padding: const EdgeInsets.all(8.0),
