@@ -1,4 +1,5 @@
 import 'package:flutmisho/models/course_data.dart';
+import 'package:flutmisho/widgets/categories.dart';
 import 'package:flutmisho/widgets/text_field_with_clear.dart';
 import 'package:flutmisho/widgets/topics_list.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class HomePageBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFieldWithIcons(),
+        TopicCategories(),
         Padding(
           padding: const EdgeInsets.all(8.0),
         ),

@@ -1,13 +1,16 @@
+import 'package:flutmisho/models/user_profile.dart';
 import 'package:flutter/material.dart';
 
 class CustomPopupMenu extends StatelessWidget {
   final VoidCallback hideUserMenu;
   final VoidCallback logOut;
+  final UserProfile? userProfile;
 
   const CustomPopupMenu({
     super.key,
     required this.hideUserMenu,
     required this.logOut,
+    required this.userProfile,
   });
 
   @override
@@ -28,6 +31,18 @@ class CustomPopupMenu extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text(
+              textAlign: TextAlign.start,
+              "Email: ${userProfile?.email}",
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Edit Profile'),

@@ -1,15 +1,11 @@
-import 'package:flutmisho/screens/user_profile.dart';
 import 'package:flutmisho/widgets/drawer.dart';
 import 'package:flutmisho/widgets/home_page_body.dart';
 import 'package:flutmisho/widgets/network_error_popup.dart';
-import 'package:flutmisho/widgets/text_field_with_clear.dart';
 import 'package:flutmisho/widgets/user_settings_popup.dart';
 import 'package:flutter/material.dart';
 import '../models/user_profile.dart';
-import '../models/course_data.dart';
 import '../utils/api_service.dart';
 import 'login/login_page.dart';
-import 'package:flutmisho/widgets/topics_list.dart';
 
 class HomePage extends StatefulWidget {
   final String accessToken;
@@ -101,6 +97,7 @@ class _HomePageState extends State<HomePage> {
                 logOut: () {
                   _handleLogout();
                 },
+                userProfile: _userProfile,
               )),
         ),
       ),
