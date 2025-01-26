@@ -7,6 +7,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.0,
     'duration': 13,
     'lectures': 15,
+    'category': 'Web Design',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -16,6 +17,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.5,
     'duration': 20,
     'lectures': 42,
+    'category': 'Web Design',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -25,6 +27,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.0,
     'duration': 13,
     'lectures': 15,
+    'category': 'Web Design',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -34,6 +37,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.5,
     'duration': 20,
     'lectures': 42,
+    'category': 'development',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -43,6 +47,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.0,
     'duration': 13,
     'lectures': 15,
+    'category': 'development',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -52,6 +57,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.5,
     'duration': 20,
     'lectures': 42,
+    'category': 'development',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -61,6 +67,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.0,
     'duration': 13,
     'lectures': 15,
+    'category': 'development',
   },
   {
     'imageUrl': 'https://picsum.photos/200/300',
@@ -70,5 +77,6 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.5,
     'duration': 20,
     'lectures': 42,
+    'category': 'development',
   },
 ];
