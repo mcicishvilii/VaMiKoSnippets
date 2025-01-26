@@ -1,6 +1,8 @@
+import 'package:flutmisho/screens/user_profile.dart';
 import 'package:flutter/material.dart';
 
 import '../models/user_profile.dart';
+import '../models/course_data.dart';
 import '../utils/api_service.dart';
 import 'login/login_page.dart';
 import 'package:flutmisho/widgets/topics_list.dart';
@@ -24,100 +26,6 @@ class _HomePageState extends State<HomePage> {
   UserProfile? _userProfile;
   bool _isLoading = true;
   String? _error;
-
-  final List<Map<String, dynamic>> _courses = [
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-    },
-    // Add more course data as needed
-  ];
 
   @override
   void initState() {
@@ -191,8 +99,21 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: _isLoading ? null : _handleLogout,
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible:
+                    false, // Prevent dismissal by tapping outside
+                builder: (BuildContext context) {
+                  return UserProfileModal(
+                    email: _userProfile?.email ?? "Unknown User",
+                    onClose: () => Navigator.of(context).pop(),
+                    onLogout: _handleLogout,
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
@@ -291,29 +212,13 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Profile Information',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text('ID: ${_userProfile?.id}'),
-                          const SizedBox(height: 8),
-                          Text('Email: ${_userProfile?.email}'),
-                        ],
-                      ),
                     ),
                     const SizedBox(height: 16),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: _courses.length,
+                        itemCount: courses.length,
                         itemBuilder: (context, index) {
-                          final course = _courses[index];
+                          final course = courses[index];
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16.0,
