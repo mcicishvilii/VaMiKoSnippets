@@ -13,109 +13,6 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-  final List<Map<String, dynamic>> courses = [
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-      'category': 'Web Design',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'Web Design',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-      'category': 'Web Design',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'development',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-      'category': 'development',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'development',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['All level'],
-      'title': 'Sketch from A to Z: for app designer',
-      'description': 'Proposal indulged no do sociable he throwing settling.',
-      'rating': 4.0,
-      'duration': 13,
-      'lectures': 15,
-      'category': 'development',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'development',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'UI/UX Design Masterclass',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'marketing',
-    },
-    {
-      'imageUrl': 'https://picsum.photos/200/300',
-      'tags': ['Beginner', 'Design'],
-      'title': 'gmerti',
-      'description': 'Dive into the world of user-centered design.',
-      'rating': 4.5,
-      'duration': 20,
-      'lectures': 42,
-      'category': 'marketing',
-    },
-  ];
-
   List<Map<String, dynamic>> filteredCourses = [];
   String? selectedCategory;
   final TextEditingController _searchController = TextEditingController();
@@ -183,7 +80,6 @@ class _HomePageBodyState extends State<HomePageBody> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               if (filteredCourses.isEmpty) {
-                // Show a placeholder message if no courses match the filter
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -195,14 +91,13 @@ class _HomePageBodyState extends State<HomePageBody> {
                 );
               }
 
-              // Check if it's the last item (for the "Clear Filter" button)
               if (index == filteredCourses.length) {
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        filterCourses(null); // Clear the filter
+                        filterCourses(null);
                       },
                       child: Text('Clear Filter'),
                     ),
@@ -210,7 +105,6 @@ class _HomePageBodyState extends State<HomePageBody> {
                 );
               }
 
-              // Build the course card
               final course = filteredCourses[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(
@@ -225,6 +119,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                   rating: course['rating'],
                   duration: course['duration'],
                   lectures: course['lectures'],
+                  post: course['post'], // Pass the post data
                 ),
               );
             },
