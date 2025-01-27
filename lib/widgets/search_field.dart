@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWithIcons extends StatelessWidget {
+  final Function(String) onSearchChanged;
+  final TextEditingController searchController;
+
   const TextFieldWithIcons({
     super.key,
+    required this.onSearchChanged,
+    required this.searchController,
   });
 
   @override
@@ -17,6 +22,7 @@ class TextFieldWithIcons extends StatelessWidget {
         ),
       ]),
       child: TextField(
+        controller: searchController,
         decoration: InputDecoration(
           filled: true,
           hintText: "Search",
@@ -26,7 +32,8 @@ class TextFieldWithIcons extends StatelessWidget {
           suffixIcon: IconButton(
             icon: Icon(Icons.clear),
             onPressed: () {
-              // _searchController.clear();
+              searchController.clear();
+              onSearchChanged(''); // Clear the search filter
             },
           ),
           border: OutlineInputBorder(
@@ -34,6 +41,7 @@ class TextFieldWithIcons extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
         ),
+        onChanged: onSearchChanged,
       ),
     );
   }

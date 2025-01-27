@@ -1,7 +1,7 @@
 import 'package:flutmisho/models/course_data.dart';
 import 'package:flutmisho/widgets/categories.dart';
 import 'package:flutmisho/widgets/chips.dart';
-import 'package:flutmisho/widgets/text_field_with_clear.dart';
+import 'package:flutmisho/widgets/search_field.dart';
 import 'package:flutmisho/widgets/topics_list.dart';
 import 'package:flutter/material.dart';
 
@@ -104,10 +104,22 @@ class _HomePageBodyState extends State<HomePageBody> {
       'lectures': 42,
       'category': 'marketing',
     },
+    {
+      'imageUrl': 'https://picsum.photos/200/300',
+      'tags': ['Beginner', 'Design'],
+      'title': 'gmerti',
+      'description': 'Dive into the world of user-centered design.',
+      'rating': 4.5,
+      'duration': 20,
+      'lectures': 42,
+      'category': 'marketing',
+    },
   ];
 
   List<Map<String, dynamic>> filteredCourses = [];
   String? selectedCategory;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
 
   @override
   void initState() {
@@ -115,19 +127,29 @@ class _HomePageBodyState extends State<HomePageBody> {
     filteredCourses = courses; // Initially display all courses
   }
 
-  void filterCourses(String? category) {
+  void filterCourses(String? category, {String query = ''}) {
     setState(() {
       selectedCategory = category;
-      if (category == null || category.isEmpty) {
+      _searchQuery = query;
+
+      if ((category == null || category.isEmpty) && query.isEmpty) {
         filteredCourses = courses;
       } else {
-        filteredCourses = courses
-            .where((course) =>
-                course['category'].toLowerCase() == category.toLowerCase())
-            .toList();
-        print(filteredCourses);
+        filteredCourses = courses.where((course) {
+          final matchesCategory = category == null ||
+              category.isEmpty ||
+              course['category'].toLowerCase() == category.toLowerCase();
+          final matchesQuery = query.isEmpty ||
+              course['title'].toLowerCase().contains(query.toLowerCase()) ||
+              course['description'].toLowerCase().contains(query.toLowerCase());
+          return matchesCategory && matchesQuery;
+        }).toList();
       }
     });
+  }
+
+  void _onSearchChanged(String query) {
+    filterCourses(selectedCategory, query: query);
   }
 
   @override
@@ -138,7 +160,10 @@ class _HomePageBodyState extends State<HomePageBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextFieldWithIcons(),
+              TextFieldWithIcons(
+                onSearchChanged: _onSearchChanged,
+                searchController: _searchController,
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
               ),
