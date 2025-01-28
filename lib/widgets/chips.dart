@@ -12,7 +12,7 @@ class TopicChips extends StatefulWidget {
 
 class _TopicChipsState extends State<TopicChips> {
   final List<CategoryModel> categories = CategoryModel.getCategories();
-  int? selectedIndex; // To keep track of the selected chip index
+  int? selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,14 @@ class _TopicChipsState extends State<TopicChips> {
           return GestureDetector(
             onTap: () {
               setState(() {
-                selectedIndex = index;
+                if (selectedIndex == index) {
+                  selectedIndex = null;
+                } else {
+                  selectedIndex = index;
+                }
               });
-
-              // Notify the parent widget of the selected category
               widget.onCategorySelected(
-                selectedIndex == index ? category.name : null,
+                selectedIndex == null ? null : category.name,
               );
             },
             child: Chip(
@@ -52,9 +54,7 @@ class _TopicChipsState extends State<TopicChips> {
               label: Text(
                 category.name,
                 style: TextStyle(
-                  color: selectedIndex == index
-                      ? Colors.white
-                      : Colors.black, // Adjust text color
+                  color: selectedIndex == index ? Colors.white : Colors.black,
                 ),
               ),
               backgroundColor: selectedIndex == index

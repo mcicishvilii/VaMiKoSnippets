@@ -21,7 +21,7 @@ class _HomePageBodyState extends State<HomePageBody> {
   @override
   void initState() {
     super.initState();
-    filteredCourses = courses; // Initially display all courses
+    filteredCourses = courses;
   }
 
   void filterCourses(String? category, {String query = ''}) {

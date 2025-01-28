@@ -20,7 +20,7 @@ class CourseCard extends StatelessWidget {
     required this.rating,
     required this.duration,
     required this.lectures,
-    required this.post, // Add this line
+    required this.post,
   });
 
   @override
