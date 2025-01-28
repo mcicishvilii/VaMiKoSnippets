@@ -47,6 +47,9 @@ class _HomePageState extends State<HomePage> {
         _error = null;
       } else {
         _error = result['message'];
+        if (result['message'].contains('authentication')) {
+          _handleLogout();
+        }
       }
     });
   }

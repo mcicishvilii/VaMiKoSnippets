@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutmisho/utils/token_manager.dart';
 import 'package:http/http.dart' as http;
 import '../models/login/login_request.dart';
 import '../models/login/login_response.dart';
@@ -60,14 +61,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> getProfile(String token) async {
     try {
-      final response = await http.get(
-        Uri.parse('$baseUrl/profile'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
-
+      final response = await _authenticatedRequest('GET', 'profile', token);
       final data = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
@@ -109,5 +103,91 @@ class ApiService {
     } catch (e) {
       return {'success': false, 'message': 'Network error occurred'};
     }
+  }
+
+  Future<Map<String, dynamic>> refreshToken(String refreshToken) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/refresh'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $refreshToken',
+        },
+      );
+
+      final data = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        return {
+          'success': true,
+          'access_token': data['access_token'],
+        };
+      } else {
+        return {'success': false, 'message': data['error'] ?? 'Refresh failed'};
+      }
+    } catch (e) {
+      return {'success': false, 'message': 'Network error occurred'};
+    }
+  }
+
+  // Create a wrapper for authenticated requests
+  Future<http.Response> _authenticatedRequest(
+    String method,
+    String endpoint,
+    String accessToken, {
+    Map<String, dynamic>? body,
+  }) async {
+    final uri = Uri.parse('$baseUrl/$endpoint');
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $accessToken',
+    };
+
+    late http.Response response;
+
+    if (method == 'GET') {
+      response = await http.get(uri, headers: headers);
+    } else if (method == 'POST') {
+      response = await http.post(
+        uri,
+        headers: headers,
+        body: body != null ? jsonEncode(body) : null,
+      );
+    } else {
+      throw Exception('Unsupported HTTP method');
+    }
+
+    // If token is expired, try to refresh
+    if (response.statusCode == 401) {
+      final tokens = await TokenManager.getTokens();
+      final refreshToken = tokens['refreshToken'];
+
+      if (refreshToken != null) {
+        final refreshResult = await this.refreshToken(refreshToken);
+
+        if (refreshResult['success']) {
+          // Save new access token
+          await TokenManager.saveTokens(
+            accessToken: refreshResult['access_token'],
+            refreshToken: refreshToken,
+          );
+
+          // Retry the original request with new token
+          headers['Authorization'] = 'Bearer ${refreshResult['access_token']}';
+
+          if (method == 'GET') {
+            return await http.get(uri, headers: headers);
+          } else {
+            return await http.post(
+              uri,
+              headers: headers,
+              body: body != null ? jsonEncode(body) : null,
+            );
+          }
+        }
+      }
+    }
+
+    return response;
   }
 }
