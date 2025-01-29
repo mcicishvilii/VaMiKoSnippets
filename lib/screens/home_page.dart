@@ -1,3 +1,4 @@
+import 'package:flutmisho/screens/profile_screen.dart';
 import 'package:flutmisho/widgets/drawer.dart';
 import 'package:flutmisho/widgets/home_page_body.dart';
 import 'package:flutmisho/widgets/network_error_popup.dart';
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   UserProfile? _userProfile;
   bool _isLoading = true;
   String? _error;
+  final List<String> appBarTitles = ['Home', 'Explore', 'Library', 'Profile'];
 
   @override
   void initState() {
@@ -118,19 +120,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      const HomePageBody(),
+      const HomePageBody(),
+      const HomePageBody(),
+      ProfileScreen(userProfile: _userProfile),
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        leading: Row(
-          children: [
-            const SizedBox(width: 8),
-            Image.asset(
-              'assets/images/flutter_logo.png',
-              height: 40,
-            ),
-          ],
-        ),
-        title: const Text('Home'),
-        centerTitle: true,
+        title: Text(appBarTitles[currentPageIndex]),
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -215,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                     _loadProfile();
                   },
                 )
-              : HomePageBody(),
+              : screens[currentPageIndex],
     );
   }
 }

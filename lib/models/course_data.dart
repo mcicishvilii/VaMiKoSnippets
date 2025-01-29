@@ -11,7 +11,7 @@ final List<Map<String, dynamic>> courses = [
     'rating': 4.0,
     'duration': 13,
     'lectures': 15,
-    'category': 'Web Design',
+    'category': 'Marketing',
     'post': {
       'title': 'Sketch from A to Z: for app designer',
       'description': 'Proposal indulged no do sociable he throwing settling.',
