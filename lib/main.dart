@@ -5,16 +5,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/home_page.dart';
 import 'screens/login/login_page.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
+void main() {
+  runApp(const MyApp());
+}
 
-void main() => runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MyApp(),
-      ),
-    );
+// void main() => runApp(
+//       DevicePreview(
+//         enabled: !kReleaseMode,
+//         builder: (context) => MyApp(),
+//       ),
+//     );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -6,11 +6,11 @@ class UserProfileModal extends StatelessWidget {
   final VoidCallback onLogout;
 
   const UserProfileModal({
-    Key? key,
+    super.key,
     required this.email,
     required this.onClose,
     required this.onLogout,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

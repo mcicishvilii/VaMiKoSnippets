@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutmisho/models/categories.dart';
 
 class TopicCategories extends StatefulWidget {
-  TopicCategories({super.key});
+  const TopicCategories({super.key});
 
   @override
-  _TopicCategoriesState createState() => _TopicCategoriesState();
+  TopicCategoriesState createState() => TopicCategoriesState();
 }
 
-class _TopicCategoriesState extends State<TopicCategories> {
+class TopicCategoriesState extends State<TopicCategories> {
   final List<CategoryModel> categories = CategoryModel.getCategories();
   int? selectedIndex; // To keep track of the selected chip index
 

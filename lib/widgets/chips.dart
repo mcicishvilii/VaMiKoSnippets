@@ -4,13 +4,13 @@ import 'package:flutmisho/models/categories.dart';
 class TopicChips extends StatefulWidget {
   final Function(String?) onCategorySelected;
 
-  TopicChips({super.key, required this.onCategorySelected});
+  const TopicChips({super.key, required this.onCategorySelected});
 
   @override
-  _TopicChipsState createState() => _TopicChipsState();
+  TopicChipsState createState() => TopicChipsState();
 }
 
-class _TopicChipsState extends State<TopicChips> {
+class TopicChipsState extends State<TopicChips> {
   final List<CategoryModel> categories = CategoryModel.getCategories();
   int? selectedIndex;
 

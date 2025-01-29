@@ -40,15 +40,19 @@ class _LoginPageState extends State<LoginPage> {
 
     final result = await _apiService.login(loginRequest);
 
+    if (!mounted) return; // ✅ Check before calling setState
+
     setState(() => _isLoading = false);
 
-    if (!mounted) return;
+    if (!mounted) return; // ✅ Check before using context
 
     if (result['success']) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('access_token', result['access_token']);
       await prefs.setString('refresh_token', result['refresh_token']);
       await prefs.setBool('is_logged_in', true);
+
+      if (!mounted) return; // ✅ Check before navigating
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -59,6 +63,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
+      if (!mounted) return; // ✅ Check before showing SnackBar
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(result['message']),

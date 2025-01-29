@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutmisho/models/course_data.dart';
 import 'package:flutmisho/widgets/categories.dart';
 import 'package:flutmisho/widgets/chips.dart';
@@ -9,10 +11,10 @@ class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key});
 
   @override
-  _HomePageBodyState createState() => _HomePageBodyState();
+  HomePageBodyState createState() => HomePageBodyState();
 }
 
-class _HomePageBodyState extends State<HomePageBody> {
+class HomePageBodyState extends State<HomePageBody> {
   List<Map<String, dynamic>> filteredCourses = [];
   String? selectedCategory;
   final TextEditingController _searchController = TextEditingController();
