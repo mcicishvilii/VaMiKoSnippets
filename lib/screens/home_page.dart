@@ -114,6 +114,8 @@ class _HomePageState extends State<HomePage> {
     _overlayEntry = null;
   }
 
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,6 +158,53 @@ class _HomePageState extends State<HomePage> {
       ),
       endDrawer: Drawer(
         child: CustomDrawer(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.create),
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Floating Action Button tapped!")),
+          );
+        },
+      ),
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        elevation: 0,
+        height: 50,
+        backgroundColor: Colors.transparent,
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.transparent,
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.search_outlined,
+              size: 25,
+            ),
+            icon: Icon(Icons.search_rounded),
+            label: 'Explore',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.bookmarks),
+            icon: Icon(Icons.bookmarks_outlined),
+            label: 'Library',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.person),
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

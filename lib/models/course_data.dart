@@ -152,4 +152,598 @@ final List<Map<String, dynamic>> courses = [
       ],
     },
   },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
+  {
+    'imageUrl':
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/300px-Pandas_logo.svg.png',
+    'tags': ['All level'],
+    'title': 'pandas',
+    'description':
+        'A software library written for the Python programming language for data manipulation and analysis',
+    'rating': 4.0,
+    'duration': 13,
+    'lectures': 15,
+    'category': 'Web Design',
+    'post': {
+      'title': 'Sketch from A to Z: for app designer',
+      'description': 'Proposal indulged no do sociable he throwing settling.',
+      'content': [
+        {
+          'type': 'text',
+          'data':
+              'In this tutorial, we will learn how to create a Python file, open it, import pandas, create a simple dataframe, and display it using `pd.head()`.'
+        },
+        {
+          'type': 'code',
+          'data':
+              'import pandas as pd\n\n# Create a simple dataframe\ndata = {\'Name\': [\'John\', \'Anna\', \'Peter\', \'Linda\'], \'Age\': [28, 22, 34, 42]}\ndf = pd.DataFrame(data)\n\n# Display the dataframe\nprint(df.head())'
+        },
+        {
+          'type': 'text',
+          'data':
+              'This is a simple example of how to use pandas to create and display a dataframe.'
+        },
+      ],
+    },
+  },
 ];
