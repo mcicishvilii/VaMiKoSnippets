@@ -3,7 +3,7 @@ import '../../models/login/login_request.dart';
 import '../../utils/api_service.dart';
 import '../../utils/validators.dart';
 import '../../widgets/custom_text_field.dart';
-import '../home_page.dart';
+import '../tabs/home_page.dart';
 import '../register/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

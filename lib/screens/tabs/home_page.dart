@@ -1,12 +1,14 @@
-import 'package:flutmisho/screens/profile_screen.dart';
+import 'package:flutmisho/screens/tabs/explore_screen.dart';
+import 'package:flutmisho/screens/tabs/library_screen.dart';
+import 'package:flutmisho/screens/tabs/profile_screen.dart';
 import 'package:flutmisho/widgets/drawer.dart';
 import 'package:flutmisho/widgets/home_page_body.dart';
 import 'package:flutmisho/widgets/network_error_popup.dart';
 import 'package:flutmisho/widgets/user_settings_popup.dart';
 import 'package:flutter/material.dart';
-import '../models/user_profile.dart';
-import '../utils/api_service.dart';
-import 'login/login_page.dart';
+import '../../models/user_profile.dart';
+import '../../utils/api_service.dart';
+import '../login/login_page.dart';
 
 class HomePage extends StatefulWidget {
   final String accessToken;
@@ -123,8 +125,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       const HomePageBody(),
-      const HomePageBody(),
-      const HomePageBody(),
+      const ExploreScreen(),
+      const LibraryScreen(),
       ProfileScreen(userProfile: _userProfile),
     ];
 
