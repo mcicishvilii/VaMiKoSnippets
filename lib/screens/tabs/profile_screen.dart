@@ -1,5 +1,6 @@
 import 'package:flutmisho/models/user_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutmisho/styles/theme.dart' as custom_theme;
 
 class ProfileScreen extends StatelessWidget {
   final UserProfile? userProfile;
@@ -74,38 +75,55 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Column(children: [
         Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => {
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 150, // custom width for the first button
+              child: ElevatedButton(
+                onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("tapped!")),
-                  )
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
                 child: const Text('View stats'),
               ),
-              ElevatedButton(
-                onPressed: () => {
+            ),
+            SizedBox(
+              width: 150, // custom width for the second button
+              child: ElevatedButton(
+                onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("tapped!")),
-                  )
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      elevation: MaterialStateProperty.all(0),
+                      side: MaterialStateProperty.all(
+                        BorderSide(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                    ),
+                child: Text(
+                  'Edit Profile',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
-                child: const Text('Edit profile'),
               ),
-            ])
+            ),
+          ],
+        )
       ]),
     );
   }

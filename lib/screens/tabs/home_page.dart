@@ -1,7 +1,6 @@
 import 'package:flutmisho/screens/tabs/explore_screen.dart';
 import 'package:flutmisho/screens/tabs/library_screen.dart';
 import 'package:flutmisho/screens/tabs/profile_screen.dart';
-import 'package:flutmisho/widgets/drawer.dart';
 import 'package:flutmisho/widgets/home_page_body.dart';
 import 'package:flutmisho/widgets/network_error_popup.dart';
 import 'package:flutmisho/widgets/user_settings_popup.dart';
@@ -158,6 +157,15 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
+        shape: ShapeBorder.lerp(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+          0.5,
+        ),
         child: const Icon(Icons.create),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -167,7 +175,8 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        elevation: 0,
+        elevation: 10,
+        surfaceTintColor: Colors.grey,
         height: 50,
         backgroundColor: Colors.transparent,
         onDestinationSelected: (int index) {
