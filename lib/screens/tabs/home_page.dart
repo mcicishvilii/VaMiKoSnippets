@@ -132,11 +132,18 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarTitles[currentPageIndex]),
+        title: Text(
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+            appBarTitles[currentPageIndex]),
         actions: [
           CompositedTransformTarget(
             link: _layerLink,
             child: IconButton(
+              color: Theme.of(context).colorScheme.onSurface,
               icon: const Icon(Icons.notifications_sharp),
               onPressed: () {
                 if (_overlayEntry == null) {
@@ -170,14 +177,16 @@ class _HomePageState extends State<HomePage> {
         },
         indicatorColor: Colors.transparent,
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
+            selectedIcon: Icon(
+                color: Theme.of(context).colorScheme.onSurface, Icons.home),
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           NavigationDestination(
             selectedIcon: Icon(
+              color: Theme.of(context).colorScheme.onSurface,
               Icons.search_outlined,
               size: 25,
             ),
@@ -185,12 +194,15 @@ class _HomePageState extends State<HomePage> {
             label: 'Explore',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.bookmarks),
+            selectedIcon: Icon(
+                color: Theme.of(context).colorScheme.onSurface,
+                Icons.bookmarks),
             icon: Icon(Icons.bookmarks_outlined),
             label: 'Library',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.person),
+            selectedIcon: Icon(
+                color: Theme.of(context).colorScheme.onSurface, Icons.person),
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
