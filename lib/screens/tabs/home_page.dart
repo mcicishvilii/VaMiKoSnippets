@@ -124,29 +124,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
+      ProfileScreen(userProfile: _userProfile),
       const HomePageBody(),
       const ExploreScreen(),
       const LibraryScreen(),
-      ProfileScreen(userProfile: _userProfile),
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: Text(appBarTitles[currentPageIndex]),
         actions: [
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-                _hideUserMenu();
-              },
-            ),
-          ),
           CompositedTransformTarget(
             link: _layerLink,
             child: IconButton(
-              icon: const Icon(Icons.person),
+              icon: const Icon(Icons.notifications_sharp),
               onPressed: () {
                 if (_overlayEntry == null) {
                   _showUserMenu();
@@ -157,9 +148,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
-      ),
-      endDrawer: Drawer(
-        child: CustomDrawer(),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
