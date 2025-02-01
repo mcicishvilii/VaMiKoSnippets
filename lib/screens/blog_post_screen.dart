@@ -38,7 +38,7 @@ class BlogPostScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 8),
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: Theme.of(context).colorScheme.onError,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
