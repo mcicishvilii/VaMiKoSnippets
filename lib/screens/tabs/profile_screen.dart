@@ -1,6 +1,5 @@
 import 'package:flutmisho/models/user_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutmisho/styles/theme.dart' as custom_theme;
 
 class ProfileScreen extends StatelessWidget {
   final UserProfile? userProfile;
@@ -99,16 +98,16 @@ class ProfileScreen extends StatelessWidget {
                 },
                 style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.transparent),
-                      elevation: MaterialStateProperty.all(0),
-                      side: MaterialStateProperty.all(
+                          WidgetStateProperty.all(Colors.transparent),
+                      elevation: WidgetStateProperty.all(0),
+                      side: WidgetStateProperty.all(
                         BorderSide(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white
                               : Colors.black,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),

@@ -1,4 +1,6 @@
-import 'package:flutmisho/models/course_data.dart';
+// home_page_body.dart
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutmisho/widgets/catgegory_tabs.dart';
 import 'package:flutmisho/widgets/topics_list.dart';
 import 'package:flutter/material.dart';
@@ -10,22 +12,53 @@ class HomePageBody extends StatefulWidget {
 }
 
 class HomePageBodyState extends State<HomePageBody> {
+  List<Map<String, dynamic>> allCourses = [];
   List<Map<String, dynamic>> filteredCourses = [];
   String? selectedCategory;
+  bool isLoading = true;
+  String? error;
 
   @override
   void initState() {
     super.initState();
-    filteredCourses = courses;
+    fetchCourses();
+  }
+
+  Future<void> fetchCourses() async {
+    try {
+      final response =
+          await http.get(Uri.parse('https://ladogudi.serv00.net/api/courses'));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        setState(() {
+          allCourses =
+              data.map((item) => item as Map<String, dynamic>).toList();
+          filteredCourses = allCourses;
+          isLoading = false;
+          error = null;
+        });
+      } else {
+        setState(() {
+          error = 'Failed to load courses. Status code: ${response.statusCode}';
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        error = 'Error loading courses: $e';
+        isLoading = false;
+      });
+    }
   }
 
   void filterCourses(String? category, {String query = ''}) {
     setState(() {
       selectedCategory = category;
       if ((category == null || category.isEmpty) && query.isEmpty) {
-        filteredCourses = courses;
+        filteredCourses = allCourses;
       } else {
-        filteredCourses = courses.where((course) {
+        filteredCourses = allCourses.where((course) {
           final matchesCategory = category == null ||
               category.isEmpty ||
               course['category'].toLowerCase() == category.toLowerCase();
@@ -40,20 +73,41 @@ class HomePageBodyState extends State<HomePageBody> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (error != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(error!, style: const TextStyle(color: Colors.red)),
+            ElevatedButton(
+              onPressed: fetchCourses,
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: TopicTabs(
-          onCategorySelected: (category) {
-            filterCourses(category);
-          },
-        )),
+        SliverToBoxAdapter(
+          child: TopicTabs(
+            onCategorySelected: (category) {
+              filterCourses(category);
+            },
+          ),
+        ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               if (filteredCourses.isEmpty) {
-                return Center(
+                return const Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
                       'No courses available for the selected category.',
                       style: TextStyle(fontSize: 16.0, color: Colors.grey),
@@ -70,7 +124,7 @@ class HomePageBodyState extends State<HomePageBody> {
                       onPressed: () {
                         filterCourses(null);
                       },
-                      child: Text('Clear Filter'),
+                      child: const Text('Clear Filter'),
                     ),
                   ),
                 );
@@ -84,13 +138,17 @@ class HomePageBodyState extends State<HomePageBody> {
                 ),
                 child: CourseCard(
                   imageUrl: course['imageUrl'],
-                  tags: course['tags'].cast<String>(),
+                  tags: (course['tags'] as List)
+                      .map((tag) => tag.toString())
+                      .toList(),
                   title: course['title'],
                   description: course['description'],
-                  rating: course['rating'],
+                  rating: course['rating'] is String
+                      ? double.parse(course['rating'])
+                      : (course['rating'] as num).toDouble(),
                   duration: course['duration'],
                   lectures: course['lectures'],
-                  post: course['post'], // Pass the post data
+                  post: course['post'],
                 ),
               );
             },

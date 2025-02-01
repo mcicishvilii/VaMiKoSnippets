@@ -9,7 +9,7 @@ class CourseCard extends StatelessWidget {
   final double rating;
   final int duration;
   final int lectures;
-  final Map<String, dynamic> post; // Add this line
+  final Map<String, dynamic> post;
 
   const CourseCard({
     super.key,
