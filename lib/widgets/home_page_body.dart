@@ -18,10 +18,64 @@ class HomePageBodyState extends State<HomePageBody> {
   bool isLoading = true;
   String? error;
 
+  // Pagination variables
+  static const int itemsPerPage = 10;
+  int currentPage = 0;
+  List<Map<String, dynamic>> displayedCourses = [];
+  ScrollController scrollController = ScrollController();
+  bool isLoadingMore = false;
+
   @override
   void initState() {
     super.initState();
     fetchCourses();
+    scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(_scrollListener);
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      loadMoreItems();
+    }
+  }
+
+  Future<void> loadMoreItems() async {
+    if (isLoadingMore) return;
+
+    setState(() {
+      isLoadingMore = true;
+    });
+
+    // Calculate next page items
+    final startIndex = (currentPage + 1) * itemsPerPage;
+    if (startIndex >= filteredCourses.length) {
+      setState(() {
+        isLoadingMore = false;
+      });
+      return;
+    }
+
+    // Simulate network delay
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final endIndex = (startIndex + itemsPerPage <= filteredCourses.length)
+        ? startIndex + itemsPerPage
+        : filteredCourses.length;
+
+    setState(() {
+      currentPage++;
+      displayedCourses.addAll(
+        filteredCourses.getRange(startIndex, endIndex).toList(),
+      );
+      isLoadingMore = false;
+    });
   }
 
   Future<void> fetchCourses() async {
@@ -35,6 +89,9 @@ class HomePageBodyState extends State<HomePageBody> {
           allCourses =
               data.map((item) => item as Map<String, dynamic>).toList();
           filteredCourses = allCourses;
+          // Initialize first page of displayed courses
+          displayedCourses = filteredCourses.take(itemsPerPage).toList();
+          currentPage = 0;
           isLoading = false;
           error = null;
         });
@@ -68,6 +125,9 @@ class HomePageBodyState extends State<HomePageBody> {
           return matchesCategory && matchesQuery;
         }).toList();
       }
+      // Reset pagination when filter changes
+      currentPage = 0;
+      displayedCourses = filteredCourses.take(itemsPerPage).toList();
     });
   }
 
@@ -93,6 +153,7 @@ class HomePageBodyState extends State<HomePageBody> {
     }
 
     return CustomScrollView(
+      controller: scrollController,
       slivers: [
         SliverToBoxAdapter(
           child: TopicTabs(
@@ -104,7 +165,7 @@ class HomePageBodyState extends State<HomePageBody> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              if (filteredCourses.isEmpty) {
+              if (displayedCourses.isEmpty) {
                 return const Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -116,21 +177,36 @@ class HomePageBodyState extends State<HomePageBody> {
                 );
               }
 
-              if (index == filteredCourses.length) {
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        filterCourses(null);
-                      },
-                      child: const Text('Clear Filter'),
+              // Show loading indicator at the bottom while loading more items
+              if (index == displayedCourses.length) {
+                if (isLoadingMore) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: CircularProgressIndicator(),
                     ),
-                  ),
-                );
+                  );
+                }
+
+                // Show "Clear Filter" button only if filter is applied
+                if (selectedCategory != null) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          filterCourses(null);
+                        },
+                        child: const Text('Clear Filter'),
+                      ),
+                    ),
+                  );
+                }
+
+                return const SizedBox.shrink(); // No more items to load
               }
 
-              final course = filteredCourses[index];
+              final course = displayedCourses[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
@@ -152,8 +228,7 @@ class HomePageBodyState extends State<HomePageBody> {
                 ),
               );
             },
-            childCount:
-                filteredCourses.isEmpty ? 1 : filteredCourses.length + 1,
+            childCount: displayedCourses.length + 1,
           ),
         ),
       ],

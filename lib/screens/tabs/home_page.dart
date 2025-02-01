@@ -123,10 +123,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-      ProfileScreen(userProfile: _userProfile),
       const HomePageBody(),
       const ExploreScreen(),
       const LibraryScreen(),
+      ProfileScreen(userProfile: _userProfile),
     ];
 
     return Scaffold(
