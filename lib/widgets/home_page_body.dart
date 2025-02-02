@@ -177,7 +177,6 @@ class HomePageBodyState extends State<HomePageBody> {
                 );
               }
 
-              // Show loading indicator at the bottom while loading more items
               if (index == displayedCourses.length) {
                 if (isLoadingMore) {
                   return const Center(
@@ -188,7 +187,6 @@ class HomePageBodyState extends State<HomePageBody> {
                   );
                 }
 
-                // Show "Clear Filter" button only if filter is applied
                 if (selectedCategory != null) {
                   return Center(
                     child: Padding(

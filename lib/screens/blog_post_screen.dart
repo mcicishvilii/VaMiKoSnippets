@@ -53,7 +53,6 @@ class BlogPostScreen extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.copy),
                         onPressed: () {
-                          // Copy the code to the clipboard
                           Clipboard.setData(
                               ClipboardData(text: content['data']));
                           ScaffoldMessenger.of(context).showSnackBar(
