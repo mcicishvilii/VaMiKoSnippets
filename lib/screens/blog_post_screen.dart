@@ -1,5 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_highlight/flutter_highlight.dart';
+import 'package:flutter_highlight/themes/monokai-sublime.dart';
+
+Widget buildCodeBlock(String codeSnippet, String language) {
+  return HighlightView(
+    codeSnippet,
+    language: language.toLowerCase(),
+    theme: monokaiSublimeTheme,
+    padding: const EdgeInsets.all(12),
+    textStyle: const TextStyle(
+      fontFamily: 'monospace',
+      fontSize: 14,
+    ),
+  );
+}
 
 class BlogPostScreen extends StatelessWidget {
   final Map<String, dynamic> post;
