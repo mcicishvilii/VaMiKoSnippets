@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 
+/// Helper widget that returns a syntax-highlighted code block.
+/// It uses the [flutter_highlight] package to render the code in the style
+/// corresponding to the provided [language].
 Widget buildCodeBlock(String codeSnippet, String language) {
   return HighlightView(
     codeSnippet,
-    language: language.toLowerCase(),
+    language: language.toLowerCase(), // ensure language is lowercase
     theme: monokaiSublimeTheme,
     padding: const EdgeInsets.all(12),
     textStyle: const TextStyle(
@@ -32,55 +35,66 @@ class BlogPostScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Post Title
             Text(
               post['title'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
+            // Post Description
             Text(
               post['description'],
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
+            // Render each content element
             ...post['content'].map<Widget>((content) {
               if (content['type'] == 'text') {
-                return Text(
-                  content['data'],
-                  style: TextStyle(fontSize: 16),
+                // Display plain text content
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    content['data'],
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 );
               } else if (content['type'] == 'code') {
+                // Retrieve the code snippet and language.
+                final String code = content['data'] ?? '';
+                // Use the language provided in the code snippet;
+                // fallback to a default value (e.g. 'dart') if not provided.
+                final String lang = content['language'] ?? 'dart';
+
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onError,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        child: SelectableText(
-                          content['data'],
-                          style:
-                              TextStyle(fontFamily: 'monospace', fontSize: 14),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.copy),
-                        onPressed: () {
-                          Clipboard.setData(
-                              ClipboardData(text: content['data']));
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text('Code copied to clipboard!')),
-                          );
-                        },
+                      // The highlighted code block using our helper.
+                      buildCodeBlock(code, lang),
+                      // A copy button placed below the code block.
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.copy),
+                            onPressed: () {
+                              Clipboard.setData(ClipboardData(text: code));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Code copied to clipboard!'),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 );
               }
-              return SizedBox.shrink();
+              // Fallback widget if content type is unrecognized.
+              return const SizedBox.shrink();
             }).toList(),
           ],
         ),
