@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/monokai-sublime.dart';
+import 'package:flutter_highlight/themes/zenburn.dart';
 
-/// Helper widget that returns a syntax-highlighted code block.
-/// It uses the [flutter_highlight] package to render the code in the style
-/// corresponding to the provided [language].
 Widget buildCodeBlock(String codeSnippet, String language) {
   return HighlightView(
     codeSnippet,
-    language: language.toLowerCase(), // ensure language is lowercase
-    theme: monokaiSublimeTheme,
+    language: language.toLowerCase(),
+    theme: zenburnTheme,
     padding: const EdgeInsets.all(12),
     textStyle: const TextStyle(
       fontFamily: 'monospace',
@@ -35,22 +32,18 @@ class BlogPostScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Post Title
             Text(
               post['title'],
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            // Post Description
             Text(
               post['description'],
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
-            // Render each content element
             ...post['content'].map<Widget>((content) {
               if (content['type'] == 'text') {
-                // Display plain text content
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
@@ -59,10 +52,7 @@ class BlogPostScreen extends StatelessWidget {
                   ),
                 );
               } else if (content['type'] == 'code') {
-                // Retrieve the code snippet and language.
                 final String code = content['data'] ?? '';
-                // Use the language provided in the code snippet;
-                // fallback to a default value (e.g. 'dart') if not provided.
                 final String lang = content['language'] ?? 'dart';
 
                 return Container(
@@ -70,9 +60,7 @@ class BlogPostScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // The highlighted code block using our helper.
                       buildCodeBlock(code, lang),
-                      // A copy button placed below the code block.
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -93,7 +81,6 @@ class BlogPostScreen extends StatelessWidget {
                   ),
                 );
               }
-              // Fallback widget if content type is unrecognized.
               return const SizedBox.shrink();
             }).toList(),
           ],

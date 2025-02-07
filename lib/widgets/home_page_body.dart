@@ -1,9 +1,9 @@
-// home_page_body.dart
 import 'dart:convert';
 import 'package:flutmisho/screens/blog_post_screen.dart';
 import 'package:flutmisho/widgets/catgegory_tabs.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key});
@@ -19,7 +19,6 @@ class HomePageBodyState extends State<HomePageBody> {
   bool isLoading = true;
   String? error;
 
-  // Pagination variables
   static const int itemsPerPage = 10;
   int currentPage = 0;
   List<Map<String, dynamic>> displayedItems = [];
@@ -62,7 +61,6 @@ class HomePageBodyState extends State<HomePageBody> {
       return;
     }
 
-    // Simulate a network delay (if desired)
     await Future.delayed(const Duration(milliseconds: 500));
 
     final endIndex = (startIndex + itemsPerPage <= filteredItems.length)
@@ -89,7 +87,6 @@ class HomePageBodyState extends State<HomePageBody> {
 
         setState(() {
           allItems = data.map((item) => item as Map<String, dynamic>).toList();
-          // Initially, show all items
           filteredItems = allItems;
           displayedItems = filteredItems.take(itemsPerPage).toList();
           currentPage = 0;
@@ -110,7 +107,6 @@ class HomePageBodyState extends State<HomePageBody> {
     }
   }
 
-  /// Filter items by category and/or search query.
   void filterItems(String? category, {String query = ''}) {
     setState(() {
       selectedCategory = category;
@@ -118,7 +114,6 @@ class HomePageBodyState extends State<HomePageBody> {
         filteredItems = allItems;
       } else {
         filteredItems = allItems.where((item) {
-          // Make sure your JSON items include a "category" field.
           final matchesCategory = category == null ||
               category.isEmpty ||
               (item['category'] != null &&
@@ -136,7 +131,6 @@ class HomePageBodyState extends State<HomePageBody> {
           return matchesCategory && matchesQuery;
         }).toList();
       }
-      // Reset pagination when filters change.
       currentPage = 0;
       displayedItems = filteredItems.take(itemsPerPage).toList();
     });
@@ -166,7 +160,6 @@ class HomePageBodyState extends State<HomePageBody> {
     return CustomScrollView(
       controller: scrollController,
       slivers: [
-        // Category Tabs
         SliverToBoxAdapter(
           child: TopicTabs(
             onCategorySelected: (category) {
@@ -174,7 +167,6 @@ class HomePageBodyState extends State<HomePageBody> {
             },
           ),
         ),
-        // Search Field
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -184,13 +176,11 @@ class HomePageBodyState extends State<HomePageBody> {
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) {
-                // Pass the current category as well as the query.
                 filterItems(selectedCategory, query: value);
               },
             ),
           ),
         ),
-        // List of Items
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -215,7 +205,6 @@ class HomePageBodyState extends State<HomePageBody> {
                     ),
                   );
                 }
-                // Optionally include a "Clear Filter" button if a category is selected.
                 if (selectedCategory != null) {
                   return Center(
                     child: Padding(
@@ -248,80 +237,106 @@ class HomePageBodyState extends State<HomePageBody> {
     );
   }
 
-  /// Build an item card that navigates to the details screen when tapped.
   Widget _buildItemCard(BuildContext context, Map<String, dynamic> item) {
-    // Parse the "code" field if available.
+    final DateTime createdDate = DateTime.parse(item['created_at']);
+    final String relativeTime = timeago.format(createdDate);
+
     List<dynamic> codeData = [];
     try {
       codeData = json.decode(item['code']);
-    } catch (_) {
-      // Handle parse error if needed.
-    }
+    } catch (_) {}
 
     return InkWell(
-      onTap: () {
-        // Convert the codeData list into content items.
-        final List<dynamic> content = codeData.map((codeSnippet) {
-          return {
-            'type': 'code',
-            'data': codeSnippet['content'] ?? '',
+        onTap: () {
+          final List<dynamic> content = codeData.map((codeSnippet) {
+            return {
+              'type': 'code',
+              'data': codeSnippet['content'] ?? '',
+            };
+          }).toList();
+
+          final Map<String, dynamic> postData = {
+            ...item,
+            'content': content,
           };
-        }).toList();
-
-        // Create a new post map with a "content" key.
-        final Map<String, dynamic> postData = {
-          ...item,
-          'content': content,
-        };
-
-        // Navigate to the details screen using the slug.
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => BlogPostScreen(post: postData),
-          ),
-        );
-      },
-      child: Card(
-        elevation: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item['title'],
-              ),
-              const SizedBox(height: 8),
-              Text(item['description']),
-              const SizedBox(height: 8),
-              Text(
-                'Slug: ${item['slug']}',
-                style: const TextStyle(fontStyle: FontStyle.italic),
-              ),
-              const SizedBox(height: 8),
-              if (codeData.isNotEmpty) ...[
-                const Text(
-                  'Code Snippet:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                for (var code in codeData)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Text(
-                      code['content'] ?? '',
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => BlogPostScreen(post: postData),
+            ),
+          );
+        },
+        child: Card(
+          elevation: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundImage: NetworkImage(
+                                  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg/220px-Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg',
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text("TokoKuxa")
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            item['title'],
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(item['description']),
+                          const SizedBox(height: 8),
+                          Text('Created: ${item['created_at']}'),
+                        ],
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      flex: 1,
+                      child: Image.network(
+                        "https://picsum.photos/200/300",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(children: [
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Text(relativeTime),
+                        SizedBox(width: 8),
+                        Icon(Icons.waving_hand_outlined),
+                        Text("22")
+                      ]),
+                      Row(children: [
+                        Icon(
+                          Icons.remove_circle_outline,
+                        ),
+                        Icon(Icons.more_vert),
+                      ])
+                    ])
               ],
-              const SizedBox(height: 8),
-              Text('Created: ${item['created_at']}'),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

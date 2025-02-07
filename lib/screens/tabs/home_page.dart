@@ -169,9 +169,9 @@ class _HomePageState extends State<HomePage> {
         ),
         child: const Icon(Icons.create),
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => AddCourseScreen()),
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(builder: (context) => AddCourseScreen()),
+          // );
         },
       ),
       bottomNavigationBar: NavigationBar(

@@ -19,6 +19,7 @@ dependencies:
   flutter_native_splash: ^2.4.4
   device_preview: ^1.2.0
   flutter_highlight: ^0.7.0
+  timeago: ^3.0.2
 
 dev_dependencies:
   flutter_test:
