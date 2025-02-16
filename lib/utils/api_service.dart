@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutmisho/utils/token_manager.dart';
 import 'package:http/http.dart' as http;
-import '../models/login/login_request.dart';
-import '../models/login/login_response.dart';
-import '../models/user.dart';
-import '../models/user_profile.dart';
+import '../data/models/login/login_request.dart';
+import '../data/models/login/login_response.dart';
+import '../data/models/user.dart';
+import '../data/models/user_profile.dart';
 
 class ApiService {
   static const String baseUrl = 'https://ladogudi.serv00.net/api';

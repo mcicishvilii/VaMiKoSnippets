@@ -1,4 +1,4 @@
-import 'package:flutmisho/models/user_profile.dart';
+import 'package:flutmisho/data/models/user_profile.dart';
 import 'package:flutter/material.dart';
 
 class CustomPopupMenu extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:flutmisho/screens/blog_post_screen.dart';
+import 'package:flutmisho/ui/screens/blog_post_screen.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {

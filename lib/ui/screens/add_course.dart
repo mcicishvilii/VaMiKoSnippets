@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../models/content_course.dart';
+import '../../data/models/content_course.dart';
 
 class AddCourseScreen extends StatefulWidget {
   @override

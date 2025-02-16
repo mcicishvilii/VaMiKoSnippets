@@ -1,9 +1,9 @@
-import 'package:flutmisho/screens/login/login_page.dart';
+import 'package:flutmisho/ui/screens/login/login_page.dart';
 import 'package:flutter/material.dart';
-import '../../utils/api_service.dart';
-import '../../models/user.dart';
-import '../../utils/validators.dart';
-import '../../widgets/custom_text_field.dart';
+import '../../../utils/api_service.dart';
+import '../../../data/models/user.dart';
+import '../../../utils/validators.dart';
+import '../../../widgets/custom_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

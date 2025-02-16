@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutmisho/models/categories.dart';
+import 'package:flutmisho/data/models/categories.dart';
 
 class TopicTabs extends StatefulWidget {
   final Function(String?) onCategorySelected;

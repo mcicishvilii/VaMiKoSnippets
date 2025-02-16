@@ -1,12 +1,12 @@
-import 'package:flutmisho/screens/tabs/explore_screen.dart';
-import 'package:flutmisho/screens/tabs/library_screen.dart';
-import 'package:flutmisho/screens/tabs/profile_screen.dart';
+import 'package:flutmisho/ui/screens/tabs/explore_screen.dart';
+import 'package:flutmisho/ui/screens/tabs/library_screen.dart';
+import 'package:flutmisho/ui/screens/tabs/profile_screen.dart';
 import 'package:flutmisho/widgets/home_page_body.dart';
 import 'package:flutmisho/widgets/network_error_popup.dart';
 import 'package:flutmisho/widgets/user_settings_popup.dart';
 import 'package:flutter/material.dart';
-import '../../models/user_profile.dart';
-import '../../utils/api_service.dart';
+import '../../../data/models/user_profile.dart';
+import '../../../utils/api_service.dart';
 import '../login/login_page.dart';
 
 class HomePage extends StatefulWidget {
