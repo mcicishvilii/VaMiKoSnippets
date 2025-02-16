@@ -1,28 +1,35 @@
 import '../../domain/models/all_items_domain.dart';
 
 class MishosItem {
-  final String itemName;
+  final int id;
+  final String title;
   final String description;
-  final String url;
+  final bool status;
+  final String updatedAt;
 
-  MishosItem({
-    required this.itemName,
-    required this.description,
-    required this.url,
-  });
+  MishosItem(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.status,
+      required this.updatedAt});
 
   factory MishosItem.fromJson(Map<String, dynamic> json) {
     return MishosItem(
-      itemName: json['itemName'],
+      id: json['id'],
+      title: json['title'],
       description: json['description'],
-      url: json['url'],
+      status: json['status'],
+      updatedAt: json['updated_at'],
     );
   }
   MishosItemDomain toDomain() {
     return MishosItemDomain(
-      itemName: itemName,
+      id: id,
+      title: title,
       description: description,
-      url: url,
+      status: status,
+      updatedAt: updatedAt,
     );
   }
 }

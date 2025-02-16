@@ -1,6 +1,10 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutmisho/domain/usecase/items_use_case.dart';
+import 'package:flutmisho/ui/viewmodel/all_items_view_model.dart';
+import 'package:flutmisho/utils/service_locator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ui/screens/tabs/home_page.dart';
 import 'ui/screens/login/login_page.dart';
@@ -10,12 +14,18 @@ import 'styles/theme.dart';
 //   runApp(const MyApp());
 // }
 
-void main() => runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MyApp(),
+void main() {
+  setup();
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => ChangeNotifierProvider(
+        create: (context) => MishoViewModel(useCase: sl<MishoUseCaseAll>()),
+        child: MyApp(),
       ),
-    );
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

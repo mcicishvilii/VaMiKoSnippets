@@ -1,11 +1,14 @@
 class MishosItemDomain {
-  final String itemName;
+  final int id;
+  final String title;
   final String description;
-  final String url;
+  final bool status;
+  final String updatedAt;
 
-  MishosItemDomain({
-    required this.itemName,
-    required this.description,
-    required this.url,
-  });
+  MishosItemDomain(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.status,
+      required this.updatedAt});
 }

@@ -80,7 +80,6 @@ class HomePageBodyState extends State<HomePageBody> {
     try {
       final response =
           await http.get(Uri.parse('http://127.0.0.1:8000/api/items'));
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonData = json.decode(response.body);
         final List<dynamic> data = jsonData['data'];
@@ -299,7 +298,6 @@ class HomePageBodyState extends State<HomePageBody> {
                           const SizedBox(height: 8),
                           Text(item['description']),
                           const SizedBox(height: 8),
-                          Text('Created: ${item['created_at']}'),
                         ],
                       ),
                     ),
