@@ -1,4 +1,3 @@
-import 'package:flutmisho/screens/add_course.dart';
 import 'package:flutmisho/screens/tabs/explore_screen.dart';
 import 'package:flutmisho/screens/tabs/library_screen.dart';
 import 'package:flutmisho/screens/tabs/profile_screen.dart';
