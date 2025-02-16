@@ -1,16 +1,16 @@
 flutter_native_splash:
   android: true
 
-  background_image: "assets/images/pubg-10217.png"
+  background_image: "assets/images/app_logo.png"
   color: "#42a5f5"
-  image: "assets/images/pubg-10217.png"
+  image: "assets/images/app_logo.png"
   color_dark: "#42a5f5"
-  image_dark: "assets/images/pubg-10217.png"
-  branding: "assets/images/pubg-10217.png"
+  image_dark: "assets/images/app_logo.png"
+  branding: "assets/images/app_logo.png"
 
   android_12:
-    image: "assets/images/pubg-10217.png"
+    image: "assets/images/app_logo.png"
     color: "#42a5f5"
-    image_dark: "assets/images/pubg-10217.png"
+    image_dark: "assets/images/app_logo.png"
     color_dark: "#42a5f5"
-    branding: "assets/images/pubg-10217.png"
+    branding: "assets/images/branding.png"

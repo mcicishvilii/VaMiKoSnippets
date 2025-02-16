@@ -25,7 +25,7 @@ class BlogPostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(post['title']),
+        title: Text(post['title'] ?? 'No Title'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -33,56 +33,87 @@ class BlogPostScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              post['title'],
+              post['title'] ?? 'No Title',
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
-              post['description'],
+              post['description'] ?? 'No Description',
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
-            ...post['content'].map<Widget>((content) {
-              if (content['type'] == 'text') {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    content['data'],
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                );
-              } else if (content['type'] == 'code') {
-                final String code = content['data'] ?? '';
-                final String lang = content['language'] ?? 'dart';
-
-                return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      buildCodeBlock(code, lang),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+            ...post['content']?.map<Widget>((content) {
+                  if (content['type'] == 'text') {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        content['data'] ?? '',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    );
+                  } else if (content['type'] == 'code') {
+                    final String code = content['data'] ?? '';
+                    final String lang = content['language'] ?? 'dart';
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.copy),
-                            onPressed: () {
-                              Clipboard.setData(ClipboardData(text: code));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Code copied to clipboard!'),
-                                ),
-                              );
-                            },
+                          buildCodeBlock(code, lang),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.copy),
+                                onPressed: () {
+                                  Clipboard.setData(ClipboardData(text: code));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content:
+                                          Text('Code copied to clipboard!'),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                );
-              }
-              return const SizedBox.shrink();
-            }).toList(),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                }).toList() ??
+                [],
+            ...post['code']?.map<Widget>((codeBlock) {
+                  final String code = codeBlock['content'] ?? '';
+                  final String lang = codeBlock['language'] ?? 'dart';
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        buildCodeBlock(code, lang),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.copy),
+                              onPressed: () {
+                                Clipboard.setData(ClipboardData(text: code));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Code copied to clipboard!'),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList() ??
+                [],
           ],
         ),
       ),
