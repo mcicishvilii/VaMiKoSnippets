@@ -30,11 +30,11 @@ class ExploreScreen extends StatelessWidget {
                     return ListTile(
                       title: Text(item.title),
                       subtitle: Text(item.description),
+                      // leading: ,
                     );
                   },
                 );
               } else if (resource is Error) {
-                print((resource as Error).error);
                 return Center(
                     child: Text("Error: ${(resource as Error).error}"));
               } else {
@@ -47,3 +47,10 @@ class ExploreScreen extends StatelessWidget {
     );
   }
 }
+
+
+  // final int id;
+  // final String title;
+  // final String description;
+  // final bool status;
+  // final String updatedAt;

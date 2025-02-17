@@ -240,101 +240,119 @@ class HomePageBodyState extends State<HomePageBody> {
     final DateTime createdDate = DateTime.parse(item['created_at']);
     final String relativeTime = timeago.format(createdDate);
 
+    // If the backend returns tags as a list, use it directly;
+    // otherwise, decode the JSON string.
+    final List<dynamic> tagsData =
+        item['tags'] is String ? json.decode(item['tags']) : item['tags'];
+
     List<dynamic> codeData = [];
     try {
       codeData = json.decode(item['code']);
     } catch (_) {}
 
     return InkWell(
-        onTap: () {
-          final List<dynamic> content = codeData.map((codeSnippet) {
-            return {
-              'type': 'code',
-              'data': codeSnippet['content'] ?? '',
-            };
-          }).toList();
-
-          final Map<String, dynamic> postData = {
-            ...item,
-            'content': content,
+      onTap: () {
+        final List<dynamic> content = codeData.map((codeSnippet) {
+          return {
+            'type': 'code',
+            'data': codeSnippet['content'] ?? '',
           };
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => BlogPostScreen(post: postData),
-            ),
-          );
-        },
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundImage: NetworkImage(
-                                  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg/220px-Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg',
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Text("TokoKuxa")
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            item['title'],
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(item['description']),
-                          const SizedBox(height: 8),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      flex: 1,
-                      child: Image.network(
-                        "https://picsum.photos/200/300",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Text(relativeTime),
-                        SizedBox(width: 8),
-                        Icon(Icons.waving_hand_outlined),
-                        Text("22")
-                      ]),
-                      Row(children: [
-                        Icon(
-                          Icons.remove_circle_outline,
-                        ),
-                        Icon(Icons.more_vert),
-                      ])
-                    ])
-              ],
-            ),
+        }).toList();
+
+        final Map<String, dynamic> postData = {
+          ...item,
+          'content': content,
+        };
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => BlogPostScreen(post: postData),
           ),
-        ));
+        );
+      },
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 10,
+                    backgroundImage: NetworkImage(
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg/220px-Queen_Elizabeth_II_official_portrait_for_1959_tour_%28retouched%29_%28cropped%29_%283-to-4_aspect_ratio%29.jpg',
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // New functionality: display all tags as chips.
+                  Expanded(
+                    child: Wrap(
+                      spacing: 4.0,
+                      runSpacing: -8,
+                      children: tagsData.map<Widget>((tag) {
+                        Color tagColor;
+                        try {
+                          // Convert the hex color string to a Color.
+                          tagColor = Color(
+                            int.parse(tag['color'].replaceFirst('#', '0xff')),
+                          );
+                        } catch (_) {
+                          tagColor = Colors.grey;
+                        }
+                        return Chip(
+                          label: Text(
+                            tag['title'] ?? '',
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                            ),
+                          ),
+                          backgroundColor: tagColor,
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          visualDensity: VisualDensity.compact,
+                        );
+                      }).toList(),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                item['title'],
+                style: const TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 8),
+              Text(item['description']),
+              const SizedBox(height: 8),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Text(relativeTime),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.waving_hand_outlined),
+                      const Text("22"),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Icon(Icons.remove_circle_outline),
+                      Icon(Icons.more_vert),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
