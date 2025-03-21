@@ -237,11 +237,10 @@ class HomePageBodyState extends State<HomePageBody> {
   }
 
   Widget _buildItemCard(BuildContext context, Map<String, dynamic> item) {
-    final DateTime createdDate = DateTime.parse(item['created_at']);
-    final String relativeTime = timeago.format(createdDate);
+    // print(item['created_at']);
+    // final DateTime createdDate = DateTime.parse(item['created_at']);
+    // final String relativeTime = timeago.format(createdDate);
 
-    // If the backend returns tags as a list, use it directly;
-    // otherwise, decode the JSON string.
     final List<dynamic> tagsData =
         item['tags'] is String ? json.decode(item['tags']) : item['tags'];
 
@@ -285,7 +284,6 @@ class HomePageBodyState extends State<HomePageBody> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  // New functionality: display all tags as chips.
                   Expanded(
                     child: Wrap(
                       spacing: 4.0,
@@ -293,7 +291,6 @@ class HomePageBodyState extends State<HomePageBody> {
                       children: tagsData.map<Widget>((tag) {
                         Color tagColor;
                         try {
-                          // Convert the hex color string to a Color.
                           tagColor = Color(
                             int.parse(tag['color'].replaceFirst('#', '0xff')),
                           );
@@ -335,7 +332,7 @@ class HomePageBodyState extends State<HomePageBody> {
                         Icons.star,
                         color: Colors.yellow,
                       ),
-                      Text(relativeTime),
+                      // Text(relativeTime),
                       const SizedBox(width: 8),
                       const Icon(Icons.waving_hand_outlined),
                       const Text("22"),

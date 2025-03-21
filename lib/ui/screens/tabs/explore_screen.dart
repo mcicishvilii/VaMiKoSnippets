@@ -10,7 +10,7 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<MishoViewModel>(context);
     final resource = viewModel.mishosUser;
-
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -26,11 +26,9 @@ class ExploreScreen extends StatelessWidget {
                   separatorBuilder: (context, index) => const Divider(),
                   itemBuilder: (context, index) {
                     final item = items[index];
-
                     return ListTile(
                       title: Text(item.title),
                       subtitle: Text(item.description),
-                      // leading: ,
                     );
                   },
                 );
@@ -47,10 +45,3 @@ class ExploreScreen extends StatelessWidget {
     );
   }
 }
-
-
-  // final int id;
-  // final String title;
-  // final String description;
-  // final bool status;
-  // final String updatedAt;
