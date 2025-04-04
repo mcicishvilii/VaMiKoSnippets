@@ -3,7 +3,6 @@ import 'package:flutmisho/ui/screens/blog_post_screen.dart';
 import 'package:flutmisho/widgets/catgegory_tabs.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key});
